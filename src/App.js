@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import GeneralInformation from './Components/GeneralInformation';
+class App extends Component {
+  constructor() {
+    super();
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    this.state = {
+        name: '',
+        email: '',
+        phone: '',
+      };
+    
+      this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange = (e) => {
+    const name = e.target.name;
+    this.setState({
+      [name]: e.target.value,
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>CV Generator</h1>
+        <form onSubmit={this.handleSubmit}>
+          <GeneralInformation name={this.state.name} handleChange={this.handleChange}/>
+        </form>
+        {/*
+        <Education />
+        <PracticalExperience />
+    <SubmitButton />*/}
+      </div>
+    )
+  }
 }
 
 export default App;
