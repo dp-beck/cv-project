@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import InputField from './InputField.js';
 
 class GeneralInformation extends Component {
     constructor(props) {
@@ -11,23 +10,17 @@ class GeneralInformation extends Component {
             <fieldset>
                 <legend>General Information</legend>
                 <label>Name:
-                    <input name="name" type="text" id="nameInput" value={this.props.value} onChange={this.props.handleChange}/>
+                    <input name="name" type="text" id="nameInput" className="generalInformation" value={this.props.value} onChange={this.props.handleChange}/>
                 </label>
-                <button>Save</button>
-                <button>Edit</button>
                 <br></br>
                 <label>Email:
-                    <input name="email" type="text" id="emailInput" value={this.props.value} onChange={this.props.handleChange}/>
+                    <input name="email" type="text" id="emailInput" className="generalInformation" value={this.props.value} onChange={this.props.handleChange}/>
                 </label>
-                <button>Save</button>
-                <button>Edit</button>
                 <br></br>
                 <label>Phone:
-                    <input name="phone" type="text" id="phoneInput" value={this.props.value} onChange={this.props.handleChange}/>
+                    <input name="phone" type="text" id="phoneInput" className="generalInformation" value={this.props.value} onChange={this.props.handleChange}/>
                 </label>
-                <button>Save</button>
-                <button>Edit</button>
-            
+        
             </fieldset>
         );
     };
