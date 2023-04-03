@@ -3,7 +3,8 @@ import uniqid from 'uniqid';
 import GeneralInformation from './Components/GeneralInformation';
 import Education from './Components/Education';
 import EducationOverview from './Components/EducationOverview';
-
+import PracticalExperience from './Components/PracticalExperience';
+import PracticalExperienceOverview from './Components/PracticalExperienceOverview';
 class App extends Component {
   constructor() {
     super();
@@ -20,10 +21,22 @@ class App extends Component {
           graduation: ''
         },
         educationEntries: [],
+        practicalExperienceEntry: {
+          id: uniqid(),
+          company: '',
+          position: '',
+          description: '',
+          startDate: '',
+          endDate: '',
+        },
+        practicalExperienceEntries: []
       };
     
       this.handleChange = this.handleChange.bind(this);
       this.addEdEntry = this.addEdEntry.bind(this);
+      this.deleteEdEntry = this.deleteEdEntry.bind(this);
+      this.addExperienceEntry = this.addExperienceEntry.bind(this);
+      this.deleteExperienceEntry = this.deleteExperienceEntry.bind(this);
   }
   
   handleChange = (e) => {
@@ -44,6 +57,18 @@ class App extends Component {
         },
       });
     };
+    if (e.target.className === "practicalExperience") {
+      this.setState({
+        practicalExperienceEntry: {
+          company: document.getElementById("companyInput").value,
+          position: document.getElementById("positionInput").value,
+          description: document.getElementById("descriptionInput").value,
+          startDate: document.getElementById("startDateInput").value,
+          endDate: document.getElementById('endDateInput').value,
+          id: this.state.practicalExperienceEntry.id,
+        }
+      })
+    }
   }
 
   addEdEntry () {
@@ -63,12 +88,36 @@ class App extends Component {
     document.getElementById("graduationInput").value = '';
   }
 
+  addExperienceEntry () {
+    this.setState({
+      practicalExperienceEntries: this.state.practicalExperienceEntries.concat(this.state.practicalExperienceEntry),
+      practicalExperienceEntry: {
+        company: '',
+        position: '',
+        description: '',
+        startDate: '',
+        endDate: '',
+        id: uniqid(),
+      },
+    });
+    document.getElementById("companyInput").value = '';
+    document.getElementById("positionInput").value = '';
+    document.getElementById("descriptionInput").value = '';
+    document.getElementById("startDateInput").value = '';
+    document.getElementById("endDateInput").value = '';
+  }
+
   deleteEdEntry = (e) => {
     this.setState({
       educationEntries: this.state.educationEntries.filter(entry => entry.id !== e.target.id)
     });
   }
 
+  deleteExperienceEntry = (e) => {
+    this.setState({
+      practicalExperienceEntries: this.state.practicalExperienceEntries.filter(entry => entry.id !== e.target.id)
+    });
+  }
   handleSubmit = (e) => {
     e.preventDefault();
   }
@@ -81,11 +130,10 @@ class App extends Component {
           <GeneralInformation name={this.state.name} handleChange={this.handleChange}/>
           <Education name={this.state.name} handleChange={this.handleChange} addEdEntry={this.addEdEntry}/>
           <EducationOverview educationEntries={this.state.educationEntries} deleteEdEntry={this.deleteEdEntry} />
+          <PracticalExperience name={this.state.name} handleChange={this.handleChange} addExperienceEntry ={this.addExperienceEntry} />
+          <PracticalExperienceOverview practicalExperienceEntries={this.state.practicalExperienceEntries} deleteExperienceEntry={this.deleteExperienceEntry} />
         </form>
-        {/*
-        
-        <PracticalExperience />
-    <SubmitButton />*/}
+        {/* <SubmitButton />*/}
       </div>
     )
   }

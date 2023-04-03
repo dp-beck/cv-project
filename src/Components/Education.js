@@ -22,7 +22,7 @@ class Education extends Component {
                     </label>
                     <br></br>
                     <label>Date of Graduation:
-                        <input name="graduation" type="text" id="graduationInput" className="education" value={this.props.value} onChange={this.props.handleChange}/>
+                        <input name="graduation" type="date" id="graduationInput" className="education" value={this.props.value} onChange={this.props.handleChange}/>
                     </label>
                     <button onClick={this.props.addEdEntry}>Add</button>
 
