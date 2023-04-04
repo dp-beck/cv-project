@@ -5,6 +5,7 @@ import Education from './Components/Education';
 import EducationOverview from './Components/EducationOverview';
 import PracticalExperience from './Components/PracticalExperience';
 import PracticalExperienceOverview from './Components/PracticalExperienceOverview';
+import CVView from './Components/CVView';
 class App extends Component {
   constructor() {
     super();
@@ -29,7 +30,8 @@ class App extends Component {
           startDate: '',
           endDate: '',
         },
-        practicalExperienceEntries: []
+        practicalExperienceEntries: [],
+        cvView: false,
       };
     
       this.handleChange = this.handleChange.bind(this);
@@ -37,6 +39,7 @@ class App extends Component {
       this.deleteEdEntry = this.deleteEdEntry.bind(this);
       this.addExperienceEntry = this.addExperienceEntry.bind(this);
       this.deleteExperienceEntry = this.deleteExperienceEntry.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange = (e) => {
@@ -88,7 +91,8 @@ class App extends Component {
     document.getElementById("graduationInput").value = '';
   }
 
-  addExperienceEntry () {
+  addExperienceEntry (e) {
+    e.preventDefault();
     this.setState({
       practicalExperienceEntries: this.state.practicalExperienceEntries.concat(this.state.practicalExperienceEntry),
       practicalExperienceEntry: {
@@ -118,22 +122,36 @@ class App extends Component {
       practicalExperienceEntries: this.state.practicalExperienceEntries.filter(entry => entry.id !== e.target.id)
     });
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
+  
+  editCV = () => {
+    this.setState({
+      cvView: !this.state.cvView
+    });
+    document.getElementById("form").classList.remove("hidden");
+    document.getElementById("title").classList.remove("hidden");
+  }
+  
+  handleSubmit = () => {
+    this.setState({
+      cvView: !this.state.cvView
+    });
+    document.getElementById("form").className = "hidden";
+    document.getElementById("title").className = "hidden";
   }
 
   render() {
     return (
       <div>
-        <h1>CV Generator</h1>
-        <form onSubmit={this.handleSubmit}>
-          <GeneralInformation name={this.state.name} handleChange={this.handleChange}/>
+        <h1 id="title">CV Generator</h1>
+        <div id="form">
+          <GeneralInformation name={this.state.name} handleChange={this.handleChange} />
           <Education name={this.state.name} handleChange={this.handleChange} addEdEntry={this.addEdEntry}/>
           <EducationOverview educationEntries={this.state.educationEntries} deleteEdEntry={this.deleteEdEntry} />
           <PracticalExperience name={this.state.name} handleChange={this.handleChange} addExperienceEntry ={this.addExperienceEntry} />
           <PracticalExperienceOverview practicalExperienceEntries={this.state.practicalExperienceEntries} deleteExperienceEntry={this.deleteExperienceEntry} />
-        </form>
-        {/* <SubmitButton />*/}
+          <button onClick={this.handleSubmit}>Generate CV</button>
+        </div>
+                {this.state.cvView ? <CVView editCV = {this.editCV} name = {this.state.name} email = {this.state.email} phone = {this.state.phone} educationEntries = {this.state.educationEntries} practicalExperienceEntries = {this.state.practicalExperienceEntries} /> : null}
       </div>
     )
   }
