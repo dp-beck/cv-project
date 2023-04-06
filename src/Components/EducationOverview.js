@@ -6,15 +6,15 @@ class EducationOverview extends Component {
             <ul>
                 {this.props.educationEntries.map((entry) => {
                     return <li key={entry.id}>
-                        {entry.school}
+                        <b>{entry.school}</b>
                         <br></br>
-                        {entry.degree}
+                        Degree: {entry.degree}
                         <br></br>
-                        {entry.major}
+                        Major: {entry.major}
                         <br></br>
-                        {entry.graduation}
+                        Date of Graduation: {entry.graduation}
                         <br></br>
-                        <button id={entry.id} onClick={this.props.deleteEdEntry}>Delete</button>
+                        <button className="deleteButton" id={entry.id} onClick={this.props.deleteEdEntry}>Delete</button>
                     </li>;
                 })}
             </ul>

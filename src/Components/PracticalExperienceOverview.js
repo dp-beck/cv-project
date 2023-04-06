@@ -6,17 +6,17 @@ class PracticalExperienceOverview extends Component {
             <ul>
                 {this.props.practicalExperienceEntries.map((entry) => {
                     return <li key={entry.id}>
-                        {entry.company}
+                        <b>{entry.company}</b>
                         <br></br>
-                        {entry.position}
+                        Position: {entry.position}
                         <br></br>
-                        {entry.description}
+                        Description: {entry.description}
                         <br></br>
-                        {entry.startDate}
+                        Start Date: {entry.startDate}
                         <br></br>
-                        {entry.endDate}
+                        End Date: {entry.endDate}
                         <br></br>
-                        <button id={entry.id} onClick={this.props.deleteExperienceEntry}>Delete</button>
+                        <button className = "deleteButton" id={entry.id} onClick={this.props.deleteExperienceEntry}>Delete</button>
                     </li>;
                 })}
             </ul>

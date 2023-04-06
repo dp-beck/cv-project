@@ -7,7 +7,7 @@ class Education extends Component {
 
     render() {
         return (
-            <fieldset>
+            <fieldset id="education">
                 <legend>Education</legend>
                     <label>School:
                         <input name="school" type="text" id="schoolInput" className="education" value={this.props.value} onChange={this.props.handleChange}/>
@@ -24,7 +24,7 @@ class Education extends Component {
                     <label>Date of Graduation:
                         <input name="graduation" type="date" id="graduationInput" className="education" value={this.props.value} onChange={this.props.handleChange}/>
                     </label>
-                    <button onClick={this.props.addEdEntry}>Add</button>
+                    <button class="addButton" onClick={this.props.addEdEntry}>Add</button>
 
             </fieldset> 
         );

@@ -8,48 +8,48 @@ class CVView extends Component {
     render () {
         return (
             <div>
-                <div id="generalInformation">
-                    <h1>{this.props.name}</h1>
-                    <p>{this.props.phone}</p>
-                    <p>{this.props.email}</p>
+                <div id="cvViewGeneralInformation">
+                    <h1 id="name">{this.props.name}</h1>
+                    <p id="phone">{this.props.phone}</p>
+                    <p id="email">{this.props.email}</p>
                 </div>
-                <div id="education">
-                    <h1>Education</h1>
+                <div id="cvViewEducation">
+                    <h1 className="sectionHeader">Education</h1>
                     <ul>
                     {this.props.educationEntries.map((entry) => {
-                        return <li key={entry.id}>
-                            {entry.school}
+                        return <li className="cvViewEntries"key={entry.id}>
+                            <b>{entry.school}</b>
                             <br></br>
-                            {entry.degree}
+                            Degree: {entry.degree}
                             <br></br>
-                            {entry.major}
+                            Major: {entry.major}
                             <br></br>
-                            {entry.graduation}
+                            Date of Graduation: {entry.graduation}
                             <br></br>
                             </li>;
                         })}
                     </ul> 
                 </div>
-                <div id="practicalExperience">
-                    <h1>Practical Experience</h1>
+                <div id="cvViewPracticalExperience">
+                    <h1 className="sectionHeader">Practical Experience</h1>
                     <ul>
                     {this.props.practicalExperienceEntries.map((entry) => {
-                        return <li key={entry.id}>
-                            {entry.company}
+                        return <li className="cvViewEntries" key={entry.id}>
+                            <b>{entry.company}</b>
                             <br></br>
-                            {entry.position}
+                            Position: {entry.position}
                             <br></br>
-                            {entry.description}
+                            Description: {entry.description}
                             <br></br>
-                            {entry.startDate}
+                            Start Date: {entry.startDate}
                             <br></br>
-                            {entry.endDate}
+                            End Date: {entry.endDate}
                             <br></br>
                             </li>;
                         })}
                     </ul>
                 </div>
-                <button onClick={this.props.editCV}>Edit</button>
+                <button id="editButton" onClick={this.props.editCV}>Edit</button>
             </div>
         );
     };

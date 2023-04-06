@@ -141,17 +141,22 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1 id="title">CV Generator</h1>
+      <div id="app">
+        <header>
+          <h1 id="title">CV Generator</h1>
+        </header>
         <div id="form">
           <GeneralInformation name={this.state.name} handleChange={this.handleChange} />
           <Education name={this.state.name} handleChange={this.handleChange} addEdEntry={this.addEdEntry}/>
           <EducationOverview educationEntries={this.state.educationEntries} deleteEdEntry={this.deleteEdEntry} />
           <PracticalExperience name={this.state.name} handleChange={this.handleChange} addExperienceEntry ={this.addExperienceEntry} />
           <PracticalExperienceOverview practicalExperienceEntries={this.state.practicalExperienceEntries} deleteExperienceEntry={this.deleteExperienceEntry} />
-          <button onClick={this.handleSubmit}>Generate CV</button>
+          <button id="generateCV" onClick={this.handleSubmit}>Generate CV</button>
         </div>
-                {this.state.cvView ? <CVView editCV = {this.editCV} name = {this.state.name} email = {this.state.email} phone = {this.state.phone} educationEntries = {this.state.educationEntries} practicalExperienceEntries = {this.state.practicalExperienceEntries} /> : null}
+        {this.state.cvView ? <CVView editCV = {this.editCV} name = {this.state.name} email = {this.state.email} phone = {this.state.phone} educationEntries = {this.state.educationEntries} practicalExperienceEntries = {this.state.practicalExperienceEntries} /> : null}
+        <footer>
+          Daniel Beck © 2003
+        </footer>
       </div>
     )
   }

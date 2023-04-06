@@ -7,7 +7,7 @@ class GeneralInformation extends Component {
 
     render() {
         return (
-            <fieldset>
+            <fieldset id="generalInformation">
                 <legend>General Information</legend>
                 <label>Name:
                     <input name="name" type="text" id="nameInput" className="generalInformation" value={this.props.value} onChange={this.props.handleChange}/>
