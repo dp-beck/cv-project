@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class PracticalExperienceOverview extends Component {
-    render() {
+function PracticalExperienceOverview(props) {
         return (
             <ul>
-                {this.props.practicalExperienceEntries.map((entry) => {
+                {props.practicalExperienceEntries.map((entry) => {
                     return <li key={entry.id}>
                         <b>{entry.company}</b>
                         <br></br>
@@ -16,12 +15,11 @@ class PracticalExperienceOverview extends Component {
                         <br></br>
                         End Date: {entry.endDate}
                         <br></br>
-                        <button className = "deleteButton" id={entry.id} onClick={this.props.deleteExperienceEntry}>Delete</button>
+                        <button className = "deleteButton" id={entry.id} onClick={props.deleteExperienceEntry}>Delete</button>
                     </li>;
                 })}
             </ul>
         );
     };
-}
 
 export default PracticalExperienceOverview;
